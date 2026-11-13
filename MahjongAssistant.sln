@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mahjong.Core", "src\Mahjong.Core\Mahjong.Core.csproj", "{92BE9E21-62C3-B04B-060B-A3D8FC1C1683}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mahjong.Vision", "src\Mahjong.Vision\Mahjong.Vision.csproj", "{7D906192-12B8-7DE9-63AA-9D5D68B84F1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mahjong.Desktop", "src\Mahjong.Desktop\Mahjong.Desktop.csproj", "{DB766315-021A-D8CE-B4A5-5443F3C119D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mahjong.Smoke", "src\Mahjong.Smoke\Mahjong.Smoke.csproj", "{A2E9AB05-C6D6-AAF5-419C-CA16C4FF994D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mahjong.Tests", "src\Mahjong.Tests\Mahjong.Tests.csproj", "{0FBF1A10-F084-E1DF-2A3D-A18C46883B87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92BE9E21-62C3-B04B-060B-A3D8FC1C1683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92BE9E21-62C3-B04B-060B-A3D8FC1C1683}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92BE9E21-62C3-B04B-060B-A3D8FC1C1683}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92BE9E21-62C3-B04B-060B-A3D8FC1C1683}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D906192-12B8-7DE9-63AA-9D5D68B84F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D906192-12B8-7DE9-63AA-9D5D68B84F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D906192-12B8-7DE9-63AA-9D5D68B84F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D906192-12B8-7DE9-63AA-9D5D68B84F1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB766315-021A-D8CE-B4A5-5443F3C119D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB766315-021A-D8CE-B4A5-5443F3C119D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB766315-021A-D8CE-B4A5-5443F3C119D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB766315-021A-D8CE-B4A5-5443F3C119D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2E9AB05-C6D6-AAF5-419C-CA16C4FF994D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2E9AB05-C6D6-AAF5-419C-CA16C4FF994D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2E9AB05-C6D6-AAF5-419C-CA16C4FF994D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2E9AB05-C6D6-AAF5-419C-CA16C4FF994D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FBF1A10-F084-E1DF-2A3D-A18C46883B87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FBF1A10-F084-E1DF-2A3D-A18C46883B87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FBF1A10-F084-E1DF-2A3D-A18C46883B87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FBF1A10-F084-E1DF-2A3D-A18C46883B87}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

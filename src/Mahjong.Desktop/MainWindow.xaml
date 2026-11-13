@@ -1,0 +1,63 @@
+<Window x:Class="Mahjong.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="麻将概率助手 · C# 版"
+        Icon="pack://application:,,,/assets/app.ico"
+        Height="640" Width="940"
+        MinHeight="520" MinWidth="800"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display"
+        Background="{StaticResource PageBrush}"
+        FontFamily="Microsoft YaHei UI">
+    <Grid Margin="18">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="340" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="0,0,18,0">
+            <TextBlock Text="麻将概率助手" FontSize="20" FontWeight="SemiBold" />
+            <TextBlock Text="自用重构版 · 只读屏幕，不操作游戏" FontSize="12" Foreground="{StaticResource MutedBrush}" Margin="0,4,0,16" />
+
+            <CheckBox x:Name="AutoModeCheck" Content="自动模式：自动找牌桌并开始读取"
+                      IsChecked="True" FontSize="13" Margin="0,2,0,14"
+                      Checked="OnAutoModeChanged" Unchecked="OnAutoModeChanged" />
+
+            <TextBlock Text="1. 选择牌桌窗口" FontWeight="SemiBold" FontSize="13" />
+            <ComboBox x:Name="WindowList" Height="32" FontSize="13" Margin="0,6,0,0" DisplayMemberPath="Display" />
+            <Button Content="刷新窗口" Click="OnRefreshClick" />
+            <Button x:Name="StartButton" Content="开始读取并显示建议" Click="OnStartClick" />
+            <Button x:Name="StopButton" Content="停止" Click="OnStopClick" IsEnabled="False" />
+            <Button x:Name="OverlayToggleButton" Content="隐藏悬浮卡（Ctrl+Shift+H）" Click="OnToggleOverlayClick" />
+            <Button Content="重新加载模型" Click="OnReloadModelClick" />
+
+            <Border Background="White" BorderBrush="{StaticResource LineBrush}" BorderThickness="1" CornerRadius="6" Padding="12" Margin="0,14,0,0">
+                <StackPanel>
+                    <TextBlock Text="运行状态" FontWeight="SemiBold" FontSize="13" />
+                    <TextBlock x:Name="StatusText" TextWrapping="Wrap" FontSize="12.5" Foreground="{StaticResource MutedBrush}" Margin="0,6,0,0" Text="正在加载模型……" />
+                </StackPanel>
+            </Border>
+
+            <TextBlock x:Name="ModelText" TextWrapping="Wrap" FontSize="11" Foreground="#888780" Margin="0,12,0,0" />
+        </StackPanel>
+
+        <Border Grid.Column="1" Background="White" BorderBrush="{StaticResource LineBrush}" BorderThickness="1" CornerRadius="6" Padding="22">
+            <StackPanel>
+                <TextBlock Text="识别到的手牌" FontWeight="SemiBold" FontSize="13" Foreground="{StaticResource MutedBrush}" />
+                <TextBlock x:Name="HandText" Text="—" FontSize="22" TextWrapping="Wrap" Margin="0,8,0,0" Foreground="{StaticResource AccentBrush}" />
+
+                <Border Height="1" Background="{StaticResource LineBrush}" Margin="0,18,0,18" />
+
+                <TextBlock Text="建议弃牌" FontWeight="SemiBold" FontSize="13" Foreground="{StaticResource MutedBrush}" />
+                <TextBlock x:Name="DiscardText" Text="—" FontSize="56" FontWeight="SemiBold" Margin="0,6,0,0" Foreground="{StaticResource AccentBrush}" />
+                <TextBlock x:Name="DetailText" Text="等待开始" FontSize="14" TextWrapping="Wrap" Margin="0,6,0,0" />
+                <TextBlock x:Name="AlternativesText" Text="" FontSize="13" TextWrapping="Wrap" Margin="0,10,0,0" Foreground="{StaticResource MutedBrush}" />
+
+                <Border Background="#F7F9FA" BorderBrush="{StaticResource LineBrush}" BorderThickness="1" CornerRadius="6" Padding="12" Margin="0,22,0,0">
+                    <TextBlock FontSize="11.5" Foreground="{StaticResource MutedBrush}" TextWrapping="Wrap" LineHeight="18"
+                               Text="自用说明：本版复用原软件的 weights.onnx（其权重授权未确认，请勿分发）。牌河与副露识别尚未移植，进张按「4 − 自己手里张数」估算，属于上限值；风险档位基于公开信息的启发式判断，不是概率。" />
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

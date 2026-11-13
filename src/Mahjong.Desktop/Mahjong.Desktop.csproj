@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>MahjongAssistant</AssemblyName>
+    <RootNamespace>Mahjong.Desktop</RootNamespace>
+    <ApplicationIcon>assets\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Mahjong.Core/Mahjong.Core.csproj" />
+    <ProjectReference Include="../Mahjong.Vision/Mahjong.Vision.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="assets\icons\NOTICE.md" CopyToOutputDirectory="PreserveNewest" TargetPath="assets\icons\NOTICE.md" />
+    <None Include="assets\weights.onnx" CopyToOutputDirectory="PreserveNewest" TargetPath="assets\weights.onnx" />
+    <None Include="assets\class_names.txt" CopyToOutputDirectory="PreserveNewest" TargetPath="assets\class_names.txt" />
+    <Resource Include="assets\app.ico" />
+  </ItemGroup>
+</Project>

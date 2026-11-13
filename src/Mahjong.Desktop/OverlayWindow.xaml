@@ -1,0 +1,34 @@
+<Window x:Class="Mahjong.Desktop.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="建议"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display"
+        FontFamily="Microsoft YaHei UI">
+    <Border Background="#F5FFFFFF"
+            BorderBrush="#3B5A6A"
+            BorderThickness="1"
+            CornerRadius="8"
+            Padding="18,14"
+            MouseLeftButtonDown="OnDrag">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="12" ShadowDepth="2" Opacity="0.18" Color="#22272B" />
+        </Border.Effect>
+        <StackPanel MinWidth="165">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="建议弃牌" FontSize="12" Foreground="#5F5E5A" />
+                <TextBlock x:Name="StageText" Text="" FontSize="12" Foreground="#3B5A6A" Margin="8,0,0,0" />
+            </StackPanel>
+            <TextBlock x:Name="TileText" Text="—" FontSize="38" FontWeight="SemiBold" Foreground="#3B5A6A" Margin="0,2,0,0" />
+            <TextBlock x:Name="DetailText" Text="等待识别" FontSize="13" Foreground="#22272B" TextWrapping="Wrap" MaxWidth="250" />
+            <TextBlock x:Name="AltText" Text="" FontSize="12" Foreground="#5F5E5A" TextWrapping="Wrap" MaxWidth="250" Margin="0,4,0,0" />
+        </StackPanel>
+    </Border>
+</Window>

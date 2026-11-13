@@ -1,0 +1,23 @@
+# 构建产物
+bin/
+obj/
+publish/
+TestResults/
+*.user
+*.suo
+.vs/
+
+# 运行日志
+logs/
+*.log
+
+# 逆向工程原始产物（原程序字节码 / 反汇编），不入库
+reverse/pyc/
+reverse/dis/
+
+# 调试截图与中间预览图
+annotated_*.png
+reverse/icon_preview_*.png
+reverse/portrait_synth.png
+reverse/icons/*.png
+reverse/mdi-meta.json

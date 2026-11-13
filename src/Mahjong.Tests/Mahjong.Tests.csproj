@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Mahjong.Core/Mahjong.Core.csproj" />
+    <ProjectReference Include="../Mahjong.Vision/Mahjong.Vision.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../reverse/golden_vectors.json" Link="golden_vectors.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../reverse/hand_row_vectors.json" Link="hand_row_vectors.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

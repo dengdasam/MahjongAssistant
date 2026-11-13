@@ -1,0 +1,4004 @@
+{
+  "mahjong_probability": {
+    "max_line": 208,
+    "imports": [
+      "IMPORT_FROM:Counter",
+      "IMPORT_FROM:Sequence",
+      "IMPORT_FROM:annotations",
+      "IMPORT_FROM:lru_cache",
+      "IMPORT_NAME:__future__",
+      "IMPORT_NAME:argparse",
+      "IMPORT_NAME:collections",
+      "IMPORT_NAME:functools",
+      "IMPORT_NAME:json",
+      "IMPORT_NAME:random",
+      "IMPORT_NAME:typing"
+    ],
+    "functions": [
+      {
+        "name": "<module>",
+        "line": 1,
+        "args": [],
+        "locals": [
+          "i",
+          "x",
+          "r"
+        ],
+        "names": [
+          "__doc__",
+          "__future__",
+          "annotations",
+          "functools",
+          "lru_cache",
+          "collections",
+          "Counter",
+          "typing",
+          "Sequence",
+          "random",
+          "range",
+          "list",
+          "TILE_NAMES",
+          "N_TILES",
+          "tuple",
+          "DECK_COUNTS",
+          "tile_id",
+          "_meldable",
+          "is_win",
+          "waits",
+          "shanten",
+          "improving_tiles",
+          "_risk_for_opponent",
+          "draw_probability",
+          "discard_analysis",
+          "analyze_snapshot",
+          "__name__",
+          "argparse",
+          "json",
+          "ArgumentParser",
+          "p",
+          "add_argument",
+          "parse_args",
+          "a",
+          "hand",
+          "h",
+          "visible",
+          "v",
+          "rivers",
+          "rs",
+          "print",
+          "dumps"
+        ]
+      },
+      {
+        "name": "tile_id",
+        "line": 18,
+        "args": [
+          "name"
+        ],
+        "locals": [
+          "name"
+        ],
+        "names": [
+          "TILE_NAMES",
+          "index"
+        ]
+      },
+      {
+        "name": "_meldable",
+        "line": 21,
+        "args": [
+          "counts",
+          "needed"
+        ],
+        "locals": [
+          "counts",
+          "needed"
+        ],
+        "names": [
+          "lru_cache"
+        ]
+      },
+      {
+        "name": "rec",
+        "line": 22,
+        "args": [
+          "c",
+          "n"
+        ],
+        "locals": [
+          "c",
+          "n",
+          "i",
+          "a"
+        ],
+        "names": [
+          "any",
+          "next",
+          "enumerate",
+          "StopIteration",
+          "list",
+          "tuple"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 26,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "i",
+          "x"
+        ],
+        "names": []
+      },
+      {
+        "name": "is_win",
+        "line": 37,
+        "args": [
+          "hand",
+          "open_melds",
+          "seven_pairs",
+          "thirteen_orphans"
+        ],
+        "locals": [
+          "hand",
+          "open_melds",
+          "seven_pairs",
+          "thirteen_orphans",
+          "pair"
+        ],
+        "names": [
+          "len",
+          "list",
+          "range",
+          "max",
+          "sum",
+          "all",
+          "any",
+          "_meldable",
+          "tuple"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 39,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "i"
+        ],
+        "names": [
+          "Counter",
+          "get"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 41,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "x"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 44,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "i"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 44,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "i"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 44,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "i"
+        ],
+        "names": []
+      },
+      {
+        "name": "waits",
+        "line": 52,
+        "args": [
+          "hand",
+          "open_melds"
+        ],
+        "locals": [
+          "hand",
+          "open_melds",
+          "out",
+          "c",
+          "t"
+        ],
+        "names": [
+          "Counter",
+          "range",
+          "is_win"
+        ]
+      },
+      {
+        "name": "shanten",
+        "line": 59,
+        "args": [
+          "hand",
+          "open_melds"
+        ],
+        "locals": [
+          "hand",
+          "open_melds",
+          "logical_count",
+          "regular",
+          "pairs",
+          "distinct",
+          "orphan"
+        ],
+        "names": [
+          "tuple",
+          "range",
+          "len",
+          "ValueError",
+          "lru_cache",
+          "sum",
+          "min",
+          "max",
+          "int",
+          "any"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 61,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "i"
+        ],
+        "names": [
+          "Counter",
+          "get"
+        ]
+      },
+      {
+        "name": "dfs",
+        "line": 66,
+        "args": [
+          "counts",
+          "melds",
+          "taatsu",
+          "pair"
+        ],
+        "locals": [
+          "counts",
+          "melds",
+          "taatsu",
+          "pair",
+          "i",
+          "m",
+          "t",
+          "best",
+          "take"
+        ],
+        "names": [
+          "next",
+          "enumerate",
+          "min"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 68,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "j",
+          "x"
+        ],
+        "names": []
+      },
+      {
+        "name": "take",
+        "line": 73,
+        "args": [
+          "indices"
+        ],
+        "locals": [
+          "indices",
+          "a",
+          "j"
+        ],
+        "names": [
+          "list",
+          "tuple"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 88,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "x"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 88,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "x"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 91,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "i"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 91,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "i"
+        ],
+        "names": []
+      },
+      {
+        "name": "improving_tiles",
+        "line": 94,
+        "args": [
+          "hand",
+          "visible",
+          "open_melds"
+        ],
+        "locals": [
+          "hand",
+          "visible",
+          "open_melds",
+          "base",
+          "own",
+          "seen",
+          "out",
+          "t",
+          "left"
+        ],
+        "names": [
+          "shanten",
+          "Counter",
+          "range"
+        ]
+      },
+      {
+        "name": "_risk_for_opponent",
+        "line": 102,
+        "args": [
+          "tile",
+          "river",
+          "melds",
+          "turn_index",
+          "visible"
+        ],
+        "locals": [
+          "tile",
+          "river",
+          "melds",
+          "turn_index",
+          "visible",
+          "r",
+          "score",
+          "evidence",
+          "level"
+        ],
+        "names": [
+          "Counter",
+          "append",
+          "divmod",
+          "any",
+          "min",
+          "max",
+          "round"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 110,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "x"
+        ],
+        "names": [
+          "abs"
+        ]
+      },
+      {
+        "name": "draw_probability",
+        "line": 126,
+        "args": [
+          "hand",
+          "visible",
+          "draws",
+          "open_melds",
+          "trials",
+          "seed",
+          "opponent_draws_per_turn"
+        ],
+        "locals": [
+          "hand",
+          "visible",
+          "draws",
+          "open_melds",
+          "trials",
+          "seed",
+          "opponent_draws_per_turn",
+          "concealed",
+          "logical",
+          "own",
+          "seen",
+          "wall",
+          "t",
+          "flower_seen",
+          "rng",
+          "tenpai",
+          "won",
+          "_",
+          "deck",
+          "h",
+          "reached",
+          "win",
+          "cursor",
+          "_turn",
+          "opts",
+          "d",
+          "x"
+        ],
+        "names": [
+          "ValueError",
+          "list",
+          "len",
+          "Counter",
+          "range",
+          "extend",
+          "max",
+          "sum",
+          "random",
+          "Random",
+          "copy",
+          "shuffle",
+          "append",
+          "is_win",
+          "shanten",
+          "set",
+          "remove",
+          "min",
+          "round"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 140,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "t"
+        ],
+        "names": []
+      },
+      {
+        "name": "<lambda>",
+        "line": 166,
+        "args": [
+          "x"
+        ],
+        "locals": [
+          "x"
+        ],
+        "names": []
+      },
+      {
+        "name": "discard_analysis",
+        "line": 170,
+        "args": [
+          "hand",
+          "visible",
+          "opponent_discards",
+          "open_melds",
+          "opponent_melds"
+        ],
+        "locals": [
+          "hand",
+          "visible",
+          "opponent_discards",
+          "open_melds",
+          "opponent_melds",
+          "vis",
+          "own",
+          "rows",
+          "d",
+          "rest",
+          "w",
+          "t",
+          "remaining",
+          "imp",
+          "ukeire",
+          "per_opponent",
+          "i",
+          "discards",
+          "om",
+          "aggregate",
+          "n",
+          "risk"
+        ],
+        "names": [
+          "len",
+          "ValueError",
+          "Counter",
+          "sorted",
+          "set",
+          "list",
+          "remove",
+          "waits",
+          "range",
+          "max",
+          "improving_tiles",
+          "sum",
+          "values",
+          "enumerate",
+          "append",
+          "_risk_for_opponent",
+          "TILE_NAMES",
+          "shanten",
+          "items"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 186,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "o"
+        ],
+        "names": []
+      },
+      {
+        "name": "<lambda>",
+        "line": 188,
+        "args": [
+          "x"
+        ],
+        "locals": [
+          "x"
+        ],
+        "names": [
+          "sum"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 188,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "o"
+        ],
+        "names": []
+      },
+      {
+        "name": "analyze_snapshot",
+        "line": 190,
+        "args": [
+          "snapshot"
+        ],
+        "locals": [
+          "snapshot",
+          "x",
+          "hand",
+          "r",
+          "rivers",
+          "melds",
+          "t",
+          "visible",
+          "player_melds",
+          "group",
+          "conf",
+          "k",
+          "v",
+          "uncertain",
+          "open_count",
+          "turn_index",
+          "result",
+          "player",
+          "parsed_melds",
+          "n"
+        ],
+        "names": [
+          "tile_id",
+          "get",
+          "len",
+          "ValueError",
+          "extend",
+          "items",
+          "int",
+          "max",
+          "discard_analysis",
+          "improving_tiles",
+          "TILE_NAMES"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 203,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "x"
+        ],
+        "names": [
+          "tile_id"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 204,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "x"
+        ],
+        "names": [
+          "tile_id"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 208,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "r"
+        ],
+        "names": [
+          "len"
+        ]
+      }
+    ],
+    "constants": [
+      "'Local probability and discard-analysis prototype for 鄂市麻将.\\n\\nTile ids: 0-8 万, 9-17 筒, 18-26 条, 27-33 东南西北中发白,\\n34-41 花牌. Flowers are removed from the hand and replaced by a draw.\\nThis is a research prototype: opponent danger is a calibrated heuristic,\\nnot a claim to know hidden hands.\\n'",
+      "0",
+      "('annotations',)",
+      "('lru_cache',)",
+      "('Counter',)",
+      "('Sequence',)",
+      "9",
+      "1",
+      "'万'",
+      "'筒'",
+      "'条'",
+      "'东南西北中发白'",
+      "'春夏秋冬梅兰竹菊'",
+      "34",
+      "4",
+      "8",
+      "'hand'",
+      "'__main__'",
+      "('description',)",
+      "'+'",
+      "'tile names, e.g. 1万 2万'",
+      "('nargs', 'help')",
+      "'--visible'",
+      "'*'",
+      "('nargs', 'default')",
+      "'--rivers'",
+      "'append'",
+      "('nargs', 'action', 'default')",
+      "False",
+      "2",
+      "('ensure_ascii', 'indent')",
+      "('name', 'str', 'return', 'int')",
+      "('counts', 'tuple[int, ...]', 'needed', 'int', 'return', 'bool')",
+      "(0, True, True)",
+      "('hand', 'Sequence[int]', 'open_melds', 'int', 'seven_pairs', 'bool', 'thirteen_orphans', 'bool', 'return', 'bool')",
+      "(0,)",
+      "('hand', 'Sequence[int]', 'open_melds', 'int', 'return', 'dict[int, int]')",
+      "('hand', 'Sequence[int]', 'open_melds', 'int', 'return', 'int')",
+      "((), 0)",
+      "('hand', 'Sequence[int]', 'visible', 'Sequence[int]', 'open_melds', 'int', 'return', 'dict[int, int]')",
+      "('tile', 'int', 'river', 'Sequence[int]', 'melds', 'Sequence[Sequence[int]]', 'turn_index', 'int', 'visible', 'Counter', 'return', 'dict')",
+      "((), 1, 0, 20000, 7, 3)",
+      "('hand', 'Sequence[int]', 'visible', 'Sequence[int]', 'draws', 'int', 'open_melds', 'int', 'trials', 'int', 'seed', 'int', 'opponent_draws_per_turn', 'int', 'return', 'dict')",
+      "((), ((), (), ()), 0, ((), (), ()))",
+      "('hand', 'Sequence[int]', 'visible', 'Sequence[int]', 'opponent_discards', 'Sequence[Sequence[int]]', 'open_melds', 'int', 'opponent_melds', 'Sequence[Sequence[Sequence[int]]]', 'return', 'list[dict]')",
+      "('snapshot', 'dict', 'return', 'dict')",
+      "('c', 'tuple[int, ...]', 'n', 'int', 'return', 'bool')",
+      "3",
+      "True",
+      "27",
+      "6",
+      "14",
+      "('default',)",
+      "7",
+      "(0, 8, 9, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33)",
+      "'Minimum tiles from tenpai; -1 means complete. Supports standard, chiitoi, kokushi.'",
+      "(13, 14)",
+      "'concealed hand plus exposed melds must total 13 or 14 logical tiles'",
+      "13",
+      "('counts', 'tuple[int, ...]', 'melds', 'int', 'taatsu', 'int', 'pair', 'int', 'return', 'int')",
+      "-1",
+      "99",
+      "'Physical tile counts that lower shanten after drawing (13-tile state).'",
+      "'Ordinal danger estimate with auditable evidence, never a probability.'",
+      "0.0",
+      "5.0",
+      "'该家已打过此牌：对该家有强安全证据'",
+      "0.7",
+      "'同花色筋线索：弱安全证据'",
+      "(1, 9)",
+      "0.25",
+      "'幺九牌通常连接度较低：弱结构线索'",
+      "(3, 7)",
+      "0.6",
+      "'三七牌后巡保留价值上升：本地口诀弱风险线索'",
+      "1.4",
+      "'该家有副露：手牌形状更集中'",
+      "12",
+      "0.12",
+      "'巡目偏后：整体风险上升'",
+      "'缺少足够公开线索，按中性风险处理'",
+      "-1.5",
+      "'低'",
+      "'偏低'",
+      "1.2",
+      "'中'",
+      "2.4",
+      "'偏高'",
+      "'高'",
+      "('level', 'evidence', 'score_internal')",
+      "'Monte Carlo chance to reach tenpai or self-draw win within own draws.\\n\\nOpponent turns are abstracted as consuming unknown wall tiles. Opponent\\ncalls/discards and strategic tile selection are intentionally excluded.\\n'",
+      "'invalid simulation parameters'",
+      "'hand plus melds must be a 13- or 14-tile state'",
+      "'self-draw baseline; opponent turns abstracted'",
+      "('tenpai_rate', 'self_draw_win_rate', 'trials', 'draws', 'scope')",
+      "('key',)",
+      "'self-draw baseline; opponent turns consume unknown wall tiles; no calls or opponent discards'",
+      "'Rank candidate discards by ukeire and a transparent opponent-risk proxy.'",
+      "()",
+      "('低', '偏低', '中', '偏高', '高')",
+      "('tile', 'remaining')",
+      "'seat'",
+      "('discard', 'tile', 'shanten', 'waits', 'improving_tiles', 'ukeire', 'risk_summary', 'opponent_risk')",
+      "'level'",
+      "'ukeire'",
+      "'opponent_risk'",
+      "'discard'",
+      "'Analyze one externally recognized screen snapshot.\\n\\nExpected fields: hand (tile-name list), rivers (three lists in seat order),\\nmelds (optional three lists of tile-name groups), confidence (optional map).\\nNo deck or tile-wall total is requested from the user.\\n'",
+      "'rivers'",
+      "'rivers must contain the three opponent discard lists'",
+      "'melds'",
+      "'visible_bonus_tiles'",
+      "'confidence'",
+      "0.9",
+      "'my_open_meld_count'",
+      "('hand', 'rivers', 'melds')",
+      "'前段'",
+      "'中段'",
+      "'后段'",
+      "'牌面识别置信度不足，请校对后再看建议'",
+      "('recognized', 'round_stage_estimate', 'warnings', 'uncertain_fields')",
+      "'recommendations'",
+      "'visible_tile_count'",
+      "'discard_recommendations'",
+      "'next_draw_improvements'",
+      "'逐家风险档位是基于公开信息的启发式判断，不是校准概率；打过的牌是较强安全线索，筋线索较弱'",
+      "'risk_notice'"
+    ]
+  },
+  "training_journal": {
+    "max_line": 78,
+    "imports": [
+      "IMPORT_FROM:Counter",
+      "IMPORT_FROM:Path",
+      "IMPORT_FROM:annotations",
+      "IMPORT_FROM:datetime",
+      "IMPORT_FROM:timezone",
+      "IMPORT_NAME:__future__",
+      "IMPORT_NAME:collections",
+      "IMPORT_NAME:datetime",
+      "IMPORT_NAME:json",
+      "IMPORT_NAME:os",
+      "IMPORT_NAME:pathlib",
+      "IMPORT_NAME:threading",
+      "IMPORT_NAME:uuid"
+    ],
+    "functions": [
+      {
+        "name": "<module>",
+        "line": 1,
+        "args": [],
+        "locals": [],
+        "names": [
+          "__doc__",
+          "__future__",
+          "annotations",
+          "collections",
+          "Counter",
+          "datetime",
+          "timezone",
+          "json",
+          "os",
+          "pathlib",
+          "Path",
+          "threading",
+          "uuid",
+          "data_dir",
+          "TrainingJournal"
+        ]
+      },
+      {
+        "name": "data_dir",
+        "line": 13,
+        "args": [],
+        "locals": [
+          "base"
+        ],
+        "names": [
+          "os",
+          "environ",
+          "get",
+          "Path",
+          "home"
+        ]
+      },
+      {
+        "name": "TrainingJournal",
+        "line": 18,
+        "args": [],
+        "locals": [],
+        "names": [
+          "__name__",
+          "__module__",
+          "__qualname__",
+          "__firstlineno__",
+          "__doc__",
+          "__init__",
+          "begin_round",
+          "_append",
+          "observe",
+          "record_outcome",
+          "record_count",
+          "__static_attributes__"
+        ]
+      },
+      {
+        "name": "__init__",
+        "line": 20,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self"
+        ],
+        "names": [
+          "data_dir",
+          "path",
+          "threading",
+          "Lock",
+          "_lock",
+          "round_id",
+          "pending",
+          "last_signature"
+        ]
+      },
+      {
+        "name": "begin_round",
+        "line": 27,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self"
+        ],
+        "names": [
+          "uuid",
+          "uuid4",
+          "hex",
+          "round_id",
+          "pending",
+          "last_signature"
+        ]
+      },
+      {
+        "name": "_append",
+        "line": 33,
+        "args": [
+          "self",
+          "item"
+        ],
+        "locals": [
+          "self",
+          "item",
+          "stream"
+        ],
+        "names": [
+          "setdefault",
+          "datetime",
+          "now",
+          "timezone",
+          "utc",
+          "isoformat",
+          "round_id",
+          "path",
+          "parent",
+          "mkdir",
+          "_lock",
+          "open",
+          "write",
+          "json",
+          "dumps"
+        ]
+      },
+      {
+        "name": "observe",
+        "line": 40,
+        "args": [
+          "self",
+          "payload"
+        ],
+        "locals": [
+          "self",
+          "payload",
+          "state",
+          "hand",
+          "melds",
+          "logical_count",
+          "options",
+          "signature",
+          "before",
+          "after",
+          "removed",
+          "added"
+        ],
+        "names": [
+          "get",
+          "int",
+          "len",
+          "tuple",
+          "sorted",
+          "last_signature",
+          "list",
+          "pending",
+          "Counter",
+          "elements",
+          "_append"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 49,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "x"
+        ],
+        "names": [
+          "get"
+        ]
+      },
+      {
+        "name": "record_outcome",
+        "line": 70,
+        "args": [
+          "self",
+          "result",
+          "score"
+        ],
+        "locals": [
+          "self",
+          "result",
+          "score"
+        ],
+        "names": [
+          "_append"
+        ]
+      },
+      {
+        "name": "record_count",
+        "line": 73,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "stream"
+        ],
+        "names": [
+          "path",
+          "exists",
+          "open",
+          "sum",
+          "OSError"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 78,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "line"
+        ],
+        "names": [
+          "strip"
+        ]
+      }
+    ],
+    "constants": [
+      "'Local replay journal for improving the Mahjong assistant from real play.'",
+      "0",
+      "('annotations',)",
+      "('Counter',)",
+      "('datetime', 'timezone')",
+      "('Path',)",
+      "'TrainingJournal'",
+      "'LOCALAPPDATA'",
+      "'MahjongProbabilityAssistant'",
+      "'.mahjong_probability_assistant'",
+      "18",
+      "'Stores local decisions and outcomes; no screenshots or network uploads.'",
+      "('_lock', 'last_signature', 'path', 'pending', 'round_id')",
+      "'replay.jsonl'",
+      "12",
+      "'timestamp'",
+      "'round_id'",
+      "True",
+      "('parents', 'exist_ok')",
+      "'a'",
+      "'utf-8'",
+      "('encoding',)",
+      "False",
+      "(',', ':')",
+      "('ensure_ascii', 'separators')",
+      "'\\n'",
+      "'state'",
+      "'hand'",
+      "('ready', 'draw')",
+      "'meld_count'",
+      "3",
+      "'ready'",
+      "14",
+      "'options'",
+      "'public_tile_count'",
+      "'river_tile_count'",
+      "('hand', 'options', 'public_tile_count', 'river_tile_count')",
+      "13",
+      "1",
+      "'decision'",
+      "('type', 'hand_before', 'recommendations', 'actual_discard', 'public_tile_count', 'river_tile_count')",
+      "'discard'",
+      "'ukeire'",
+      "'point_off_range'",
+      "'round_result'",
+      "('type', 'result', 'net_score')",
+      "'r'"
+    ]
+  },
+  "wall_counter": {
+    "max_line": 77,
+    "imports": [
+      "IMPORT_FROM:annotations",
+      "IMPORT_NAME:__future__",
+      "IMPORT_NAME:cv2",
+      "IMPORT_NAME:numpy"
+    ],
+    "functions": [
+      {
+        "name": "<module>",
+        "line": 1,
+        "args": [],
+        "locals": [],
+        "names": [
+          "__doc__",
+          "__future__",
+          "annotations",
+          "cv2",
+          "numpy",
+          "np",
+          "_PATTERNS",
+          "_counter_box",
+          "_segment_votes",
+          "_read_glyph",
+          "recognize_wall_remaining"
+        ]
+      },
+      {
+        "name": "_counter_box",
+        "line": 20,
+        "args": [
+          "image"
+        ],
+        "locals": [
+          "image",
+          "h",
+          "w",
+          "x0",
+          "x1",
+          "y0",
+          "y1",
+          "roi",
+          "hsv",
+          "mask",
+          "contours",
+          "_",
+          "choices",
+          "contour",
+          "x",
+          "y",
+          "cw",
+          "ch",
+          "ratio",
+          "cx",
+          "cy",
+          "score"
+        ],
+        "names": [
+          "shape",
+          "int",
+          "cv2",
+          "cvtColor",
+          "COLOR_BGR2HSV",
+          "inRange",
+          "np",
+          "array",
+          "uint8",
+          "morphologyEx",
+          "MORPH_CLOSE",
+          "ones",
+          "findContours",
+          "RETR_EXTERNAL",
+          "CHAIN_APPROX_SIMPLE",
+          "boundingRect",
+          "max",
+          "abs",
+          "append",
+          "min"
+        ]
+      },
+      {
+        "name": "<lambda>",
+        "line": 46,
+        "args": [
+          "item"
+        ],
+        "locals": [
+          "item"
+        ],
+        "names": []
+      },
+      {
+        "name": "_segment_votes",
+        "line": 49,
+        "args": [
+          "glyph"
+        ],
+        "locals": [
+          "glyph",
+          "regions",
+          "y",
+          "x"
+        ],
+        "names": [
+          "cv2",
+          "resize",
+          "INTER_AREA",
+          "slice",
+          "float",
+          "np",
+          "mean"
+        ]
+      },
+      {
+        "name": "_read_glyph",
+        "line": 65,
+        "args": [
+          "glyph"
+        ],
+        "locals": [
+          "glyph",
+          "best_digit",
+          "best_score",
+          "digit",
+          "pattern",
+          "score"
+        ],
+        "names": [
+          "_segment_votes",
+          "_PATTERNS",
+          "items",
+          "sum",
+          "enumerate"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 71,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "i",
+          "on"
+        ],
+        "names": []
+      },
+      {
+        "name": "recognize_wall_remaining",
+        "line": 77,
+        "args": [
+          "image"
+        ],
+        "locals": [
+          "image",
+          "box",
+          "x",
+          "y",
+          "w",
+          "h",
+          "tile",
+          "hsv",
+          "mask",
+          "columns",
+          "active",
+          "runs",
+          "start",
+          "i",
+          "yes",
+          "digits",
+          "scores",
+          "left",
+          "right",
+          "glyph",
+          "rows",
+          "digit",
+          "score",
+          "value",
+          "confidence"
+        ],
+        "names": [
+          "_counter_box",
+          "cv2",
+          "cvtColor",
+          "COLOR_BGR2HSV",
+          "inRange",
+          "np",
+          "array",
+          "uint8",
+          "max",
+          "int",
+          "morphologyEx",
+          "MORPH_OPEN",
+          "ones",
+          "sum",
+          "enumerate",
+          "tolist",
+          "append",
+          "len",
+          "where",
+          "_read_glyph",
+          "str",
+          "join",
+          "min"
+        ]
+      }
+    ],
+    "constants": [
+      "'Conservative OCR for the small green live-wall counter beside the table clock.'",
+      "0",
+      "('annotations',)",
+      "(1, 1, 1, 0, 1, 1, 1)",
+      "(0, 0, 1, 0, 0, 1, 0)",
+      "(1, 0, 1, 1, 1, 0, 1)",
+      "(1, 0, 1, 1, 0, 1, 1)",
+      "(0, 1, 1, 1, 0, 1, 0)",
+      "(1, 1, 0, 1, 0, 1, 1)",
+      "(1, 1, 0, 1, 1, 1, 1)",
+      "(1, 0, 1, 0, 0, 1, 0)",
+      "(1, 1, 1, 1, 1, 1, 1)",
+      "(1, 1, 1, 1, 0, 1, 1)",
+      "(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)",
+      "('image', 'np.ndarray')",
+      "('glyph', 'np.ndarray')",
+      "2",
+      "0.34",
+      "0.72",
+      "0.24",
+      "0.62",
+      "(32, 105, 105)",
+      "(95, 255, 255)",
+      "(5, 5)",
+      "1",
+      "0.35",
+      "0.95",
+      "0.018",
+      "0.075",
+      "0.035",
+      "0.16",
+      "0.46",
+      "0.7",
+      "0.25",
+      "('key',)",
+      "'Return seven normalized occupancy votes for a thresholded glyph.'",
+      "(28, 44)",
+      "('interpolation',)",
+      "9",
+      "7",
+      "21",
+      "19",
+      "26",
+      "18",
+      "23",
+      "37",
+      "35",
+      "42",
+      "(None, 9.0)",
+      "0.8",
+      "'Return (count, confidence) or (None, 0) for an uncertain frame.'",
+      "(None, 0.0)",
+      "(0, 0, 175)",
+      "(180, 145, 255)",
+      "0.1",
+      "0.82",
+      "0.08",
+      "0.92",
+      "(2, 2)",
+      "('axis',)",
+      "False",
+      "0.07",
+      "3",
+      "5",
+      "0.22",
+      "-1",
+      "''",
+      "0.0",
+      "1.0",
+      "5.5",
+      "144",
+      "0.48"
+    ]
+  },
+  "yolo_screen_detect": {
+    "max_line": 55,
+    "imports": [
+      "IMPORT_FROM:Path",
+      "IMPORT_FROM:annotations",
+      "IMPORT_NAME:__future__",
+      "IMPORT_NAME:argparse",
+      "IMPORT_NAME:cv2",
+      "IMPORT_NAME:json",
+      "IMPORT_NAME:numpy",
+      "IMPORT_NAME:onnxruntime",
+      "IMPORT_NAME:pathlib"
+    ],
+    "functions": [
+      {
+        "name": "<module>",
+        "line": 1,
+        "args": [],
+        "locals": [],
+        "names": [
+          "__doc__",
+          "__future__",
+          "annotations",
+          "argparse",
+          "json",
+          "pathlib",
+          "Path",
+          "cv2",
+          "numpy",
+          "np",
+          "onnxruntime",
+          "ort",
+          "__file__",
+          "parent",
+          "ROOT",
+          "MODEL",
+          "CLASSES",
+          "_SESSION_CACHE",
+          "label_to_tile",
+          "detect",
+          "__name__",
+          "ArgumentParser",
+          "p",
+          "add_argument",
+          "float",
+          "parse_args",
+          "a",
+          "image",
+          "confidence",
+          "iou",
+          "res",
+          "imwrite",
+          "output",
+          "pop",
+          "print",
+          "dumps"
+        ]
+      },
+      {
+        "name": "label_to_tile",
+        "line": 13,
+        "args": [
+          "label"
+        ],
+        "locals": [
+          "label",
+          "rank",
+          "suit",
+          "n"
+        ],
+        "names": [
+          "isdigit",
+          "int",
+          "get"
+        ]
+      },
+      {
+        "name": "detect",
+        "line": 20,
+        "args": [
+          "image_path",
+          "model_path",
+          "classes_path",
+          "confidence",
+          "iou",
+          "regions"
+        ],
+        "locals": [
+          "image_path",
+          "model_path",
+          "classes_path",
+          "confidence",
+          "iou",
+          "regions",
+          "image",
+          "h",
+          "w",
+          "model_key",
+          "session",
+          "x",
+          "class_names",
+          "inp",
+          "ih",
+          "iw",
+          "scale",
+          "nw",
+          "nh",
+          "resized",
+          "canvas",
+          "dx",
+          "dy",
+          "tensor",
+          "output",
+          "boxes",
+          "scores",
+          "cls",
+          "conf",
+          "keep",
+          "xyxy",
+          "kept",
+          "idx",
+          "cx",
+          "cy",
+          "bw",
+          "bh",
+          "x1",
+          "y1",
+          "x2",
+          "y2",
+          "indices",
+          "ids",
+          "detections",
+          "j",
+          "y",
+          "ci",
+          "name",
+          "preview",
+          "d"
+        ],
+        "names": [
+          "isinstance",
+          "str",
+          "Path",
+          "cv2",
+          "imread",
+          "copy",
+          "FileNotFoundError",
+          "shape",
+          "resolve",
+          "_SESSION_CACHE",
+          "get",
+          "ort",
+          "InferenceSession",
+          "read_text",
+          "splitlines",
+          "strip",
+          "len",
+          "ValueError",
+          "get_inputs",
+          "min",
+          "round",
+          "resize",
+          "INTER_LINEAR",
+          "np",
+          "full",
+          "uint8",
+          "cvtColor",
+          "COLOR_BGR2RGB",
+          "transpose",
+          "astype",
+          "float32",
+          "run",
+          "name",
+          "T",
+          "argmax",
+          "arange",
+          "where",
+          "max",
+          "int",
+          "append",
+          "dnn",
+          "NMSBoxes",
+          "tolist",
+          "asarray",
+          "reshape",
+          "label_to_tile",
+          "float",
+          "sort",
+          "rectangle",
+          "putText",
+          "FONT_HERSHEY_SIMPLEX",
+          "LINE_AA"
+        ]
+      },
+      {
+        "name": "<lambda>",
+        "line": 55,
+        "args": [
+          "d"
+        ],
+        "locals": [
+          "d"
+        ],
+        "names": []
+      }
+    ],
+    "constants": [
+      "'Run the downloaded 42-class ONNX Mahjong detector on a screenshot.'",
+      "0",
+      "('annotations',)",
+      "('Path',)",
+      "'models/pretrained/weights.onnx'",
+      "'models/pretrained/class_names.txt'",
+      "0.25",
+      "0.45",
+      "'__main__'",
+      "'image'",
+      "'--confidence'",
+      "('type', 'default')",
+      "'--iou'",
+      "'--output'",
+      "'screen_review/yolo_detections.png'",
+      "('default',)",
+      "('confidence', 'iou')",
+      "'preview'",
+      "False",
+      "2",
+      "('ensure_ascii', 'indent')",
+      "('label', 'str')",
+      "-1",
+      "'条'",
+      "'万'",
+      "'筒'",
+      "('B', 'C', 'D')",
+      "'东'",
+      "'南'",
+      "'西'",
+      "'北'",
+      "'中'",
+      "'发'",
+      "'白'",
+      "('EW', 'SW', 'WW', 'NW', 'RD', 'GD', 'WD')",
+      "'Detect tiles in an image path or an OpenCV BGR image array.'",
+      "'CPUExecutionProvider'",
+      "('providers',)",
+      "'utf-8'",
+      "('encoding',)",
+      "42",
+      "'expected 42 class labels, got '",
+      "4",
+      "('interpolation',)",
+      "3",
+      "114",
+      "('dtype',)",
+      "1",
+      "255.0",
+      "('axis',)",
+      "('bbox', 'class', 'tile', 'confidence')",
+      "('key',)",
+      "'bbox'",
+      "(40, 220, 90)",
+      "'tile'",
+      "'class'",
+      "' '",
+      "'confidence'",
+      "'.2f'",
+      "5",
+      "(20, 40, 240)",
+      "('image_size', 'model', 'confidence_threshold', 'detections', 'preview')"
+    ]
+  },
+  "desktop_assistant": {
+    "max_line": 805,
+    "imports": [
+      "IMPORT_FROM:Counter",
+      "IMPORT_FROM:ImageGrab",
+      "IMPORT_FROM:Path",
+      "IMPORT_FROM:TILE_NAMES",
+      "IMPORT_FROM:TrainingJournal",
+      "IMPORT_FROM:annotations",
+      "IMPORT_FROM:detect",
+      "IMPORT_FROM:discard_analysis",
+      "IMPORT_FROM:improving_tiles",
+      "IMPORT_FROM:is_win",
+      "IMPORT_FROM:messagebox",
+      "IMPORT_FROM:recognize_wall_remaining",
+      "IMPORT_FROM:shanten",
+      "IMPORT_FROM:ttk",
+      "IMPORT_FROM:wintypes",
+      "IMPORT_NAME:PIL",
+      "IMPORT_NAME:__future__",
+      "IMPORT_NAME:collections",
+      "IMPORT_NAME:ctypes",
+      "IMPORT_NAME:ctypes.wintypes",
+      "IMPORT_NAME:cv2",
+      "IMPORT_NAME:mahjong_probability",
+      "IMPORT_NAME:numpy",
+      "IMPORT_NAME:pathlib",
+      "IMPORT_NAME:threading",
+      "IMPORT_NAME:time",
+      "IMPORT_NAME:tkinter",
+      "IMPORT_NAME:training_journal",
+      "IMPORT_NAME:wall_counter",
+      "IMPORT_NAME:yolo_screen_detect"
+    ],
+    "functions": [
+      {
+        "name": "<module>",
+        "line": 1,
+        "args": [],
+        "locals": [],
+        "names": [
+          "__doc__",
+          "__future__",
+          "annotations",
+          "ctypes",
+          "ctypes.wintypes",
+          "wintypes",
+          "threading",
+          "time",
+          "tkinter",
+          "tk",
+          "ttk",
+          "messagebox",
+          "pathlib",
+          "Path",
+          "collections",
+          "Counter",
+          "cv2",
+          "numpy",
+          "np",
+          "PIL",
+          "ImageGrab",
+          "mahjong_probability",
+          "TILE_NAMES",
+          "discard_analysis",
+          "improving_tiles",
+          "is_win",
+          "shanten",
+          "training_journal",
+          "TrainingJournal",
+          "wall_counter",
+          "recognize_wall_remaining",
+          "yolo_screen_detect",
+          "detect",
+          "__file__",
+          "resolve",
+          "parent",
+          "ROOT",
+          "WinDLL",
+          "USER32",
+          "WINFUNCTYPE",
+          "BOOL",
+          "HWND",
+          "LPARAM",
+          "WNDENUMPROC",
+          "SetProcessDPIAware",
+          "restype",
+          "IsWindowVisible",
+          "argtypes",
+          "IsIconic",
+          "IsWindow",
+          "GetWindowTextLengthW",
+          "c_int",
+          "LPWSTR",
+          "GetWindowTextW",
+          "POINTER",
+          "RECT",
+          "GetWindowRect",
+          "GetClientRect",
+          "POINT",
+          "ClientToScreen",
+          "EnumWindows",
+          "list_game_windows",
+          "client_rect",
+          "choose_hand",
+          "tile_name",
+          "detect_self_draw_action",
+          "detect_opponent_rivers",
+          "point_off_band",
+          "risk_order",
+          "discard_tile_priority",
+          "tile_priority_label",
+          "DesktopAssistant",
+          "__name__",
+          "hasattr",
+          "SystemExit",
+          "Tk",
+          "app_root",
+          "mainloop"
+        ]
+      },
+      {
+        "name": "list_game_windows",
+        "line": 47,
+        "args": [],
+        "locals": [
+          "enum_proc",
+          "visit"
+        ],
+        "names": [
+          "USER32",
+          "WNDENUMPROC",
+          "EnumWindows",
+          "sorted"
+        ]
+      },
+      {
+        "name": "visit",
+        "line": 52,
+        "args": [
+          "hwnd",
+          "_"
+        ],
+        "locals": [
+          "hwnd",
+          "_",
+          "length",
+          "title",
+          "rect",
+          "width",
+          "height"
+        ],
+        "names": [
+          "IsWindowVisible",
+          "IsIconic",
+          "GetWindowTextLengthW",
+          "ctypes",
+          "create_unicode_buffer",
+          "GetWindowTextW",
+          "wintypes",
+          "RECT",
+          "GetWindowRect",
+          "byref",
+          "right",
+          "left",
+          "bottom",
+          "top",
+          "value",
+          "strip",
+          "append"
+        ]
+      },
+      {
+        "name": "<lambda>",
+        "line": 69,
+        "args": [
+          "item"
+        ],
+        "locals": [
+          "item"
+        ],
+        "names": [
+          "any",
+          "lower"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 69,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "word"
+        ],
+        "names": [
+          "lower"
+        ]
+      },
+      {
+        "name": "client_rect",
+        "line": 72,
+        "args": [
+          "hwnd"
+        ],
+        "locals": [
+          "hwnd",
+          "user32",
+          "rect",
+          "origin"
+        ],
+        "names": [
+          "USER32",
+          "wintypes",
+          "RECT",
+          "GetClientRect",
+          "ctypes",
+          "byref",
+          "RuntimeError",
+          "POINT",
+          "ClientToScreen",
+          "x",
+          "y",
+          "right",
+          "bottom"
+        ]
+      },
+      {
+        "name": "choose_hand",
+        "line": 83,
+        "args": [
+          "detections",
+          "width",
+          "height"
+        ],
+        "locals": [
+          "detections",
+          "width",
+          "height",
+          "band",
+          "d",
+          "edges",
+          "row_cluster",
+          "name",
+          "items",
+          "edge"
+        ],
+        "names": [
+          "items",
+          "max",
+          "len"
+        ]
+      },
+      {
+        "name": "row_cluster",
+        "line": 94,
+        "args": [
+          "name",
+          "items"
+        ],
+        "locals": [
+          "name",
+          "items",
+          "dimension",
+          "tolerance",
+          "center",
+          "best",
+          "anchor",
+          "c",
+          "item",
+          "cluster",
+          "score",
+          "widths",
+          "gap_limit",
+          "segments",
+          "previous",
+          "prev_center",
+          "item_center"
+        ],
+        "names": [
+          "abs",
+          "len",
+          "sum",
+          "sort",
+          "sorted",
+          "append",
+          "max"
+        ]
+      },
+      {
+        "name": "center",
+        "line": 98,
+        "args": [
+          "item"
+        ],
+        "locals": [
+          "item",
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 105,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "item"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 106,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "item"
+        ],
+        "names": []
+      },
+      {
+        "name": "<lambda>",
+        "line": 109,
+        "args": [
+          "item"
+        ],
+        "locals": [
+          "item"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 114,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "item"
+        ],
+        "names": []
+      },
+      {
+        "name": "<lambda>",
+        "line": 125,
+        "args": [
+          "segment"
+        ],
+        "locals": [
+          "segment"
+        ],
+        "names": [
+          "len",
+          "sum"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 125,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "item"
+        ],
+        "names": []
+      },
+      {
+        "name": "<lambda>",
+        "line": 127,
+        "args": [
+          "item"
+        ],
+        "locals": [
+          "item"
+        ],
+        "names": []
+      },
+      {
+        "name": "<lambda>",
+        "line": 131,
+        "args": [
+          "name"
+        ],
+        "locals": [
+          "name"
+        ],
+        "names": [
+          "len",
+          "sum"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 131,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "d"
+        ],
+        "names": []
+      },
+      {
+        "name": "tile_name",
+        "line": 135,
+        "args": [
+          "detection"
+        ],
+        "locals": [
+          "detection"
+        ],
+        "names": [
+          "get",
+          "TILE_NAMES"
+        ]
+      },
+      {
+        "name": "detect_self_draw_action",
+        "line": 139,
+        "args": [
+          "image"
+        ],
+        "locals": [
+          "image",
+          "height",
+          "width",
+          "hsv",
+          "mask",
+          "x1",
+          "x2",
+          "y1",
+          "y2",
+          "roi",
+          "count",
+          "_",
+          "stats",
+          "min_side",
+          "min_area",
+          "x",
+          "y",
+          "w",
+          "h",
+          "area",
+          "ratio",
+          "fill"
+        ],
+        "names": [
+          "shape",
+          "cv2",
+          "cvtColor",
+          "COLOR_BGR2HSV",
+          "inRange",
+          "np",
+          "array",
+          "int",
+          "connectedComponentsWithStats",
+          "min",
+          "max"
+        ]
+      },
+      {
+        "name": "detect_opponent_rivers",
+        "line": 158,
+        "args": [
+          "detections",
+          "width",
+          "height",
+          "hand_detections"
+        ],
+        "locals": [
+          "detections",
+          "width",
+          "height",
+          "hand_detections",
+          "item",
+          "own",
+          "d",
+          "items",
+          "largest_row",
+          "top_candidates",
+          "top_row",
+          "used",
+          "bottom_candidates",
+          "own_river_row",
+          "remaining",
+          "left",
+          "right",
+          "largest_column",
+          "left_column",
+          "right_column",
+          "rivers",
+          "river"
+        ],
+        "names": [
+          "id",
+          "tile_name",
+          "len",
+          "set",
+          "update",
+          "TILE_NAMES",
+          "index"
+        ]
+      },
+      {
+        "name": "xy",
+        "line": 162,
+        "args": [
+          "d"
+        ],
+        "locals": [
+          "d",
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "names": []
+      },
+      {
+        "name": "largest_row",
+        "line": 166,
+        "args": [
+          "candidates",
+          "tolerance"
+        ],
+        "locals": [
+          "candidates",
+          "tolerance",
+          "best",
+          "anchor",
+          "ay",
+          "d",
+          "row"
+        ],
+        "names": [
+          "abs",
+          "len"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 181,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "d"
+        ],
+        "names": [
+          "id"
+        ]
+      },
+      {
+        "name": "largest_column",
+        "line": 188,
+        "args": [
+          "candidates"
+        ],
+        "locals": [
+          "candidates",
+          "best",
+          "anchor",
+          "ax",
+          "d",
+          "column"
+        ],
+        "names": [
+          "abs",
+          "len"
+        ]
+      },
+      {
+        "name": "point_off_band",
+        "line": 201,
+        "args": [
+          "option"
+        ],
+        "locals": [
+          "option",
+          "ranges",
+          "risks",
+          "safe",
+          "unsafe",
+          "item",
+          "low",
+          "high"
+        ],
+        "names": [
+          "get",
+          "round"
+        ]
+      },
+      {
+        "name": "risk_order",
+        "line": 216,
+        "args": [
+          "option"
+        ],
+        "locals": [
+          "option"
+        ],
+        "names": [
+          "sum",
+          "get"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 217,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "item"
+        ],
+        "names": [
+          "get"
+        ]
+      },
+      {
+        "name": "discard_tile_priority",
+        "line": 221,
+        "args": [
+          "tile",
+          "hand",
+          "stage"
+        ],
+        "locals": [
+          "tile",
+          "hand",
+          "stage",
+          "rank0",
+          "connected",
+          "s",
+          "suit_sizes"
+        ],
+        "names": [
+          "Counter",
+          "divmod",
+          "any",
+          "range",
+          "sum",
+          "min",
+          "max"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 235,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "other"
+        ],
+        "names": [
+          "abs"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 239,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "r"
+        ],
+        "names": [
+          "get"
+        ]
+      },
+      {
+        "name": "tile_priority_label",
+        "line": 251,
+        "args": [
+          "priority"
+        ],
+        "locals": [
+          "priority"
+        ],
+        "names": [
+          "get"
+        ]
+      },
+      {
+        "name": "DesktopAssistant",
+        "line": 256,
+        "args": [],
+        "locals": [],
+        "names": [
+          "__name__",
+          "__module__",
+          "__qualname__",
+          "__firstlineno__",
+          "__init__",
+          "add_meld_dialog",
+          "save_meld",
+          "clear_melds",
+          "refresh_meld_summary",
+          "refresh_windows",
+          "selected_window",
+          "start",
+          "capture_loop",
+          "update_result",
+          "record_round_dialog",
+          "show_overlay",
+          "draw_mascot",
+          "card",
+          "staticmethod",
+          "tile_face",
+          "tile_chip",
+          "render_overlay",
+          "render_hand",
+          "render_recommendation",
+          "render_draw_advice",
+          "overlay_position",
+          "drag",
+          "hide_overlay",
+          "toggle_overlay",
+          "stop",
+          "close",
+          "__static_attributes__"
+        ]
+      },
+      {
+        "name": "__init__",
+        "line": 257,
+        "args": [
+          "self",
+          "root"
+        ],
+        "locals": [
+          "self",
+          "root",
+          "row",
+          "meld_row",
+          "actions"
+        ],
+        "names": [
+          "root",
+          "title",
+          "geometry",
+          "minsize",
+          "configure",
+          "windows",
+          "threading",
+          "Event",
+          "running",
+          "worker",
+          "session",
+          "overlay",
+          "overlay_content",
+          "meld_groups",
+          "pending_kong",
+          "TrainingJournal",
+          "journal",
+          "tk",
+          "StringVar",
+          "meld_summary",
+          "Label",
+          "pack",
+          "Frame",
+          "window_var",
+          "ttk",
+          "Combobox",
+          "window_combo",
+          "Button",
+          "refresh_windows",
+          "add_meld_dialog",
+          "clear_melds",
+          "start",
+          "stop",
+          "toggle_overlay",
+          "record_round_dialog",
+          "status",
+          "protocol",
+          "close"
+        ]
+      },
+      {
+        "name": "add_meld_dialog",
+        "line": 303,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "buttons"
+        ],
+        "names": [
+          "tk",
+          "Toplevel",
+          "root",
+          "title",
+          "transient",
+          "grab_set",
+          "geometry",
+          "configure",
+          "Label",
+          "pack",
+          "StringVar",
+          "ttk",
+          "Combobox",
+          "Entry",
+          "Frame",
+          "Button",
+          "destroy"
+        ]
+      },
+      {
+        "name": "<lambda>",
+        "line": 320,
+        "args": [],
+        "locals": [],
+        "names": [
+          "save_meld",
+          "get"
+        ]
+      },
+      {
+        "name": "save_meld",
+        "line": 322,
+        "args": [
+          "self",
+          "dialog",
+          "kind",
+          "raw_tiles"
+        ],
+        "locals": [
+          "self",
+          "dialog",
+          "kind",
+          "raw_tiles",
+          "token",
+          "tokens",
+          "ids",
+          "valid",
+          "ordered",
+          "tile",
+          "names",
+          "summary"
+        ],
+        "names": [
+          "replace",
+          "split",
+          "strip",
+          "TILE_NAMES",
+          "index",
+          "ValueError",
+          "messagebox",
+          "showerror",
+          "len",
+          "set",
+          "sorted",
+          "join",
+          "meld_groups",
+          "append",
+          "refresh_meld_summary",
+          "destroy"
+        ]
+      },
+      {
+        "name": "clear_melds",
+        "line": 349,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self"
+        ],
+        "names": [
+          "meld_groups",
+          "clear",
+          "refresh_meld_summary"
+        ]
+      },
+      {
+        "name": "refresh_meld_summary",
+        "line": 353,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "text"
+        ],
+        "names": [
+          "join",
+          "meld_groups",
+          "meld_summary",
+          "set",
+          "len"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 354,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "group"
+        ],
+        "names": []
+      },
+      {
+        "name": "refresh_windows",
+        "line": 357,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "_",
+          "title",
+          "rect"
+        ],
+        "names": [
+          "list_game_windows",
+          "windows",
+          "window_combo",
+          "current",
+          "status",
+          "set",
+          "len",
+          "window_var"
+        ]
+      },
+      {
+        "name": "selected_window",
+        "line": 367,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "index"
+        ],
+        "names": [
+          "window_combo",
+          "current",
+          "len",
+          "windows",
+          "RuntimeError"
+        ]
+      },
+      {
+        "name": "start",
+        "line": 373,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "hwnd",
+          "title",
+          "_",
+          "rect",
+          "round_id",
+          "exc"
+        ],
+        "names": [
+          "running",
+          "is_set",
+          "selected_window",
+          "client_rect",
+          "RuntimeError",
+          "session",
+          "set",
+          "pending_kong",
+          "journal",
+          "begin_round",
+          "status",
+          "show_overlay",
+          "threading",
+          "Thread",
+          "capture_loop",
+          "worker",
+          "start",
+          "Exception",
+          "messagebox",
+          "showerror",
+          "str"
+        ]
+      },
+      {
+        "name": "capture_loop",
+        "line": 392,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "hwnd",
+          "title",
+          "box",
+          "shot",
+          "image",
+          "wall_remaining",
+          "wall_confidence",
+          "result",
+          "detections",
+          "edge",
+          "hand",
+          "counts",
+          "self_draw",
+          "d",
+          "names",
+          "name",
+          "groups",
+          "open_melds",
+          "n",
+          "hand_ids",
+          "quad_name",
+          "payload",
+          "item",
+          "visible_counts",
+          "registered_counts",
+          "tile",
+          "count",
+          "_",
+          "visible_tiles",
+          "rivers",
+          "group",
+          "meld_tiles",
+          "tile_counts",
+          "quad",
+          "pending",
+          "removed",
+          "inferred_melds",
+          "logical",
+          "extra",
+          "inferred",
+          "total_melds",
+          "expected",
+          "options",
+          "best_ukeire",
+          "max_river",
+          "stage",
+          "wall_status",
+          "exc"
+        ],
+        "names": [
+          "running",
+          "is_set",
+          "session",
+          "USER32",
+          "IsWindow",
+          "IsIconic",
+          "RuntimeError",
+          "client_rect",
+          "ImageGrab",
+          "grab",
+          "convert",
+          "cv2",
+          "cvtColor",
+          "np",
+          "asarray",
+          "COLOR_RGB2BGR",
+          "recognize_wall_remaining",
+          "detect",
+          "choose_hand",
+          "shape",
+          "detect_self_draw_action",
+          "tile_name",
+          "zip",
+          "list",
+          "meld_groups",
+          "len",
+          "TILE_NAMES",
+          "index",
+          "next",
+          "Counter",
+          "items",
+          "is_win",
+          "id",
+          "min",
+          "max",
+          "range",
+          "detect_opponent_rivers",
+          "set",
+          "count",
+          "pending_kong",
+          "append",
+          "root",
+          "after",
+          "refresh_meld_summary",
+          "improving_tiles",
+          "shanten",
+          "sum",
+          "values",
+          "sorted",
+          "discard_analysis",
+          "map",
+          "discard_tile_priority",
+          "point_off_band",
+          "tile_priority_label",
+          "journal",
+          "observe",
+          "update_result",
+          "Exception",
+          "str",
+          "time",
+          "sleep"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 412,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "tile",
+          "count"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 419,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "item"
+        ],
+        "names": [
+          "id",
+          "tile_name",
+          "TILE_NAMES",
+          "index"
+        ]
+      },
+      {
+        "name": "<genexpr>",
+        "line": 421,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "group",
+          "tile"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 428,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "tile",
+          "count"
+        ],
+        "names": []
+      },
+      {
+        "name": "<lambda>",
+        "line": 479,
+        "args": [
+          "tile"
+        ],
+        "locals": [
+          "tile"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 483,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "item"
+        ],
+        "names": []
+      },
+      {
+        "name": "<genexpr>",
+        "line": 484,
+        "args": [
+          ".0"
+        ],
+        "locals": [
+          ".0",
+          "item"
+        ],
+        "names": []
+      },
+      {
+        "name": "<lambda>",
+        "line": 491,
+        "args": [
+          "item"
+        ],
+        "locals": [
+          "item"
+        ],
+        "names": [
+          "risk_order"
+        ]
+      },
+      {
+        "name": "update_result",
+        "line": 515,
+        "args": [
+          "self",
+          "payload",
+          "status"
+        ],
+        "locals": [
+          "self",
+          "payload",
+          "status"
+        ],
+        "names": [
+          "status",
+          "set",
+          "overlay",
+          "render_overlay"
+        ]
+      },
+      {
+        "name": "record_round_dialog",
+        "line": 520,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "buttons",
+          "save_result"
+        ],
+        "names": [
+          "tk",
+          "Toplevel",
+          "root",
+          "title",
+          "transient",
+          "grab_set",
+          "geometry",
+          "configure",
+          "Label",
+          "pack",
+          "journal",
+          "record_count",
+          "StringVar",
+          "ttk",
+          "Combobox",
+          "Entry",
+          "Frame",
+          "Button",
+          "destroy"
+        ]
+      },
+      {
+        "name": "save_result",
+        "line": 537,
+        "args": [],
+        "locals": [
+          "net_score",
+          "exc"
+        ],
+        "names": [
+          "int",
+          "get",
+          "strip",
+          "ValueError",
+          "messagebox",
+          "showerror",
+          "journal",
+          "record_outcome",
+          "OSError",
+          "str",
+          "destroy",
+          "status",
+          "set",
+          "record_count"
+        ]
+      },
+      {
+        "name": "show_overlay",
+        "line": 552,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "bar",
+          "mascot",
+          "heading",
+          "headline",
+          "subtitle",
+          "hide"
+        ],
+        "names": [
+          "overlay",
+          "deiconify",
+          "lift",
+          "tk",
+          "Toplevel",
+          "root",
+          "attributes",
+          "overrideredirect",
+          "configure",
+          "geometry",
+          "overlay_position",
+          "Frame",
+          "overlay_body",
+          "pack",
+          "pack_propagate",
+          "draw_mascot",
+          "Label",
+          "place",
+          "bind",
+          "drag",
+          "overlay_content",
+          "render_overlay"
+        ]
+      },
+      {
+        "name": "<lambda>",
+        "line": 575,
+        "args": [
+          "_e"
+        ],
+        "locals": [
+          "_e"
+        ],
+        "names": [
+          "hide_overlay"
+        ]
+      },
+      {
+        "name": "draw_mascot",
+        "line": 585,
+        "args": [
+          "self",
+          "parent"
+        ],
+        "locals": [
+          "self",
+          "parent",
+          "canvas"
+        ],
+        "names": [
+          "tk",
+          "Canvas",
+          "create_oval",
+          "create_arc",
+          "create_polygon",
+          "create_text"
+        ]
+      },
+      {
+        "name": "card",
+        "line": 598,
+        "args": [
+          "self",
+          "parent",
+          "bg",
+          "border",
+          "padx",
+          "pady"
+        ],
+        "locals": [
+          "self",
+          "parent",
+          "bg",
+          "border",
+          "padx",
+          "pady",
+          "frame",
+          "inner"
+        ],
+        "names": [
+          "tk",
+          "Frame",
+          "pack"
+        ]
+      },
+      {
+        "name": "tile_face",
+        "line": 605,
+        "args": [
+          "tile"
+        ],
+        "locals": [
+          "tile"
+        ],
+        "names": []
+      },
+      {
+        "name": "tile_chip",
+        "line": 611,
+        "args": [
+          "self",
+          "parent",
+          "tile",
+          "size"
+        ],
+        "locals": [
+          "self",
+          "parent",
+          "tile",
+          "size",
+          "number",
+          "suit",
+          "colors",
+          "ink",
+          "width",
+          "height",
+          "font_num",
+          "font_suit",
+          "chip"
+        ],
+        "names": [
+          "tile_face",
+          "get",
+          "tk",
+          "Frame",
+          "pack_propagate",
+          "Label",
+          "pack"
+        ]
+      },
+      {
+        "name": "render_overlay",
+        "line": 628,
+        "args": [
+          "self",
+          "payload"
+        ],
+        "locals": [
+          "self",
+          "payload",
+          "child",
+          "state",
+          "value",
+          "confidence",
+          "recognized",
+          "readable",
+          "bg",
+          "border",
+          "box",
+          "line",
+          "main_text",
+          "counts"
+        ],
+        "names": [
+          "overlay_content",
+          "winfo_children",
+          "destroy",
+          "get",
+          "float",
+          "card",
+          "tk",
+          "Frame",
+          "pack",
+          "Label",
+          "render_hand",
+          "render_recommendation",
+          "render_draw_advice"
+        ]
+      },
+      {
+        "name": "render_hand",
+        "line": 683,
+        "args": [
+          "self",
+          "payload"
+        ],
+        "locals": [
+          "self",
+          "payload",
+          "hand",
+          "box",
+          "head",
+          "group_text",
+          "tiles",
+          "i",
+          "tile",
+          "chip"
+        ],
+        "names": [
+          "card",
+          "overlay_content",
+          "tk",
+          "Frame",
+          "pack",
+          "Label",
+          "len",
+          "get",
+          "join",
+          "enumerate",
+          "tile_chip",
+          "grid"
+        ]
+      },
+      {
+        "name": "render_recommendation",
+        "line": 701,
+        "args": [
+          "self",
+          "payload"
+        ],
+        "locals": [
+          "self",
+          "payload",
+          "options",
+          "best",
+          "box",
+          "top",
+          "strategy_label",
+          "main",
+          "chip",
+          "metrics",
+          "distance",
+          "ukeire",
+          "danger",
+          "low",
+          "high",
+          "index",
+          "option",
+          "other",
+          "row",
+          "details",
+          "note",
+          "note_text"
+        ],
+        "names": [
+          "get",
+          "card",
+          "overlay_content",
+          "tk",
+          "Frame",
+          "pack",
+          "Label",
+          "tile_chip",
+          "len",
+          "enumerate"
+        ]
+      },
+      {
+        "name": "render_draw_advice",
+        "line": 752,
+        "args": [
+          "self",
+          "payload"
+        ],
+        "locals": [
+          "self",
+          "payload",
+          "box",
+          "waiting_count",
+          "note",
+          "draw_count",
+          "note_text"
+        ],
+        "names": [
+          "card",
+          "overlay_content",
+          "get",
+          "tk",
+          "Label",
+          "pack",
+          "join"
+        ]
+      },
+      {
+        "name": "overlay_position",
+        "line": 767,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self",
+          "hwnd",
+          "_",
+          "left",
+          "top",
+          "right",
+          "bottom",
+          "game_w",
+          "game_h",
+          "panel_w",
+          "panel_h",
+          "screen_w",
+          "screen_h",
+          "x",
+          "y"
+        ],
+        "names": [
+          "selected_window",
+          "client_rect",
+          "Exception",
+          "max",
+          "min",
+          "int",
+          "root",
+          "winfo_screenwidth",
+          "winfo_screenheight"
+        ]
+      },
+      {
+        "name": "drag",
+        "line": 783,
+        "args": [
+          "self",
+          "widget"
+        ],
+        "locals": [
+          "self",
+          "widget"
+        ],
+        "names": [
+          "bind"
+        ]
+      },
+      {
+        "name": "<lambda>",
+        "line": 784,
+        "args": [
+          "e"
+        ],
+        "locals": [
+          "e"
+        ],
+        "names": [
+          "setattr",
+          "x_root",
+          "y_root",
+          "overlay",
+          "winfo_x",
+          "winfo_y"
+        ]
+      },
+      {
+        "name": "<lambda>",
+        "line": 785,
+        "args": [
+          "e"
+        ],
+        "locals": [
+          "e"
+        ],
+        "names": [
+          "overlay",
+          "geometry",
+          "_drag",
+          "x_root",
+          "y_root"
+        ]
+      },
+      {
+        "name": "hide_overlay",
+        "line": 787,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self"
+        ],
+        "names": [
+          "overlay",
+          "withdraw"
+        ]
+      },
+      {
+        "name": "toggle_overlay",
+        "line": 791,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self"
+        ],
+        "names": [
+          "overlay",
+          "show_overlay",
+          "state",
+          "deiconify",
+          "lift",
+          "hide_overlay"
+        ]
+      },
+      {
+        "name": "stop",
+        "line": 799,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self"
+        ],
+        "names": [
+          "running",
+          "clear",
+          "status",
+          "set",
+          "overlay",
+          "render_overlay"
+        ]
+      },
+      {
+        "name": "close",
+        "line": 805,
+        "args": [
+          "self"
+        ],
+        "locals": [
+          "self"
+        ],
+        "names": [
+          "stop",
+          "root",
+          "destroy"
+        ]
+      }
+    ],
+    "constants": [
+      "'Windows desktop prototype for reading a visible WeChat Mahjong window.'",
+      "0",
+      "('annotations',)",
+      "('ttk', 'messagebox')",
+      "('Path',)",
+      "('Counter',)",
+      "('ImageGrab',)",
+      "('TILE_NAMES', 'discard_analysis', 'improving_tiles', 'is_win', 'shanten')",
+      "('TrainingJournal',)",
+      "('recognize_wall_remaining',)",
+      "('detect',)",
+      "'user32'",
+      "True",
+      "('use_last_error',)",
+      "'DesktopAssistant'",
+      "'__main__'",
+      "'windll'",
+      "'此版本面向 Windows 电脑版。'",
+      "('key',)",
+      "2",
+      "1",
+      "500",
+      "350",
+      "('微乐', '麻将', 'wechat', '微信')",
+      "\"Return a window's client rectangle in desktop screen coordinates.\"",
+      "'无法读取游戏窗口区域'",
+      "0.2",
+      "'bbox'",
+      "3",
+      "('下', '上', '左', '右')",
+      "('下', '上')",
+      "0.055",
+      "1.8",
+      "-1",
+      "'confidence'",
+      "'下'",
+      "'tile'",
+      "34",
+      "'Detect the large orange self-draw action button in the table UI.'",
+      "(4, 90, 130)",
+      "(32, 255, 255)",
+      "0.58",
+      "0.82",
+      "0.52",
+      "0.84",
+      "0.085",
+      "0.0035",
+      "0.72",
+      "1.35",
+      "0.28",
+      "False",
+      "'Best-effort extraction of the three opponent discard lanes.'",
+      "0.18",
+      "0.45",
+      "0.035",
+      "0.44",
+      "0.73",
+      "0.3",
+      "0.66",
+      "0.15",
+      "0.39",
+      "0.61",
+      "0.86",
+      "'Convert ordinal public-information risk clues into an explicitly rough range.'",
+      "(0.01, 0.03)",
+      "(0.02, 0.06)",
+      "(0.04, 0.1)",
+      "(0.09, 0.18)",
+      "(0.16, 0.3)",
+      "('低', '偏低', '中', '偏高', '高')",
+      "'opponent_risk'",
+      "(0, 100)",
+      "(1.0, 1.0)",
+      "'level'",
+      "100",
+      "4",
+      "'Apply the local isolated-tile saying only as a tie-breaker.'",
+      "7",
+      "27",
+      "30",
+      "31",
+      "33",
+      "9",
+      "(1, 9)",
+      "(2, 8)",
+      "(3, 7)",
+      "6",
+      "5",
+      "'先清孤张风牌'",
+      "'再清孤张箭牌'",
+      "'缺门孤张'",
+      "'幺九孤张'",
+      "'二八孤张'",
+      "'其他孤张'",
+      "'三七尽量留'",
+      "(0, 1, 2, 3, 4, 5, 6)",
+      "256",
+      "('journal', 'meld_groups', 'meld_summary', 'overlay', 'overlay_body', 'overlay_content', 'pending_kong', 'root', 'running', 'session', 'status', 'window_combo', 'window_var', 'windows', 'worker')",
+      "('#ffffff', '#e5ddf5', 11, 8)",
+      "('normal',)",
+      "'麻将概率助手 · 电脑版'",
+      "'640x410'",
+      "600",
+      "390",
+      "'#f4f6f3'",
+      "('bg',)",
+      "'已登记 0 组碰/吃/杠'",
+      "('value',)",
+      "'麻将概率助手'",
+      "('Microsoft YaHei UI', 20, 'bold')",
+      "'#183c35'",
+      "('text', 'font', 'bg', 'fg')",
+      "'w'",
+      "22",
+      "(18, 2)",
+      "('anchor', 'padx', 'pady')",
+      "'电脑版 · 读取已打开的微信小程序牌局，只给建议，不操作游戏'",
+      "('Microsoft YaHei UI', 10)",
+      "'#60736d'",
+      "23",
+      "(0, 16)",
+      "'x'",
+      "('fill', 'padx')",
+      "'readonly'",
+      "48",
+      "('textvariable', 'state', 'width')",
+      "'left'",
+      "('side', 'fill', 'expand')",
+      "'刷新窗口'",
+      "('text', 'command')",
+      "(8, 0)",
+      "('side', 'padx')",
+      "'#e8e2fb'",
+      "'#d2c5f3'",
+      "('bg', 'highlightthickness', 'highlightbackground')",
+      "(12, 0)",
+      "('fill', 'padx', 'pady')",
+      "'自家副露 / 杠'",
+      "'#514176'",
+      "('Microsoft YaHei UI', 10, 'bold')",
+      "('text', 'bg', 'fg', 'font')",
+      "10",
+      "('side', 'padx', 'pady')",
+      "'#615d71'",
+      "('Microsoft YaHei UI', 9)",
+      "('textvariable', 'bg', 'fg', 'font')",
+      "'记录碰 / 吃 / 杠'",
+      "'right'",
+      "8",
+      "'清空'",
+      "(0, 4)",
+      "14",
+      "'开始读取并显示建议'",
+      "('side',)",
+      "'停止'",
+      "'显示/隐藏建议卡片'",
+      "'记录本局结果'",
+      "'先选择牌局窗口；杠牌会优先识别并按一组计算，牌种不清时可手动登记。'",
+      "'nw'",
+      "470",
+      "'#e8eee9'",
+      "'#263c36'",
+      "12",
+      "('textvariable', 'justify', 'anchor', 'wraplength', 'font', 'bg', 'fg', 'padx', 'pady')",
+      "'both'",
+      "(0, 18)",
+      "('fill', 'expand', 'padx', 'pady')",
+      "'WM_DELETE_WINDOW'",
+      "'记录自己的碰 / 吃 / 杠'",
+      "'410x270'",
+      "'#f7f3ff'",
+      "'记录自家已经碰、吃或杠出的牌'",
+      "('Microsoft YaHei UI', 13, 'bold')",
+      "18",
+      "(16, 10)",
+      "'杠'",
+      "'牌组类型'",
+      "('anchor', 'padx')",
+      "('杠', '碰', '吃')",
+      "('textvariable', 'values', 'state', 'width')",
+      "(3, 8)",
+      "'杠/碰输入一种牌；吃输入同花色连续三张，例如 2万、3万、4万'",
+      "'#686176'",
+      "370",
+      "('text', 'bg', 'fg', 'font', 'wraplength', 'justify')",
+      "''",
+      "40",
+      "('textvariable', 'width')",
+      "(5, 10)",
+      "(0, 14)",
+      "'取消'",
+      "'保存牌组'",
+      "'，'",
+      "','",
+      "'、'",
+      "' '",
+      "'牌名无效'",
+      "'请按示例填写牌名，例如 3条 或 2万、3万、4万。'",
+      "('parent',)",
+      "(1, 4)",
+      "'碰'",
+      "(1, 3)",
+      "'吃'",
+      "'牌组不符合规则'",
+      "'杠/碰选一种相同牌；吃需要同花色连续三张。'",
+      "'吃 '",
+      "('kind', 'tiles', 'summary')",
+      "'已登记 '",
+      "' 组'",
+      "'：'",
+      "'碰/吃/杠'",
+      "'summary'",
+      "'  ('",
+      "'×'",
+      "')'",
+      "'values'",
+      "'找到 '",
+      "' 个可读取窗口。选择麻将窗口；有自家碰、吃或杠时先登记，杠按一组计算。'",
+      "'没有找到可读取的窗口。请先打开微信小程序，并确认游戏窗口没有最小化。'",
+      "'请先选择包含牌局的微信/游戏窗口'",
+      "'游戏窗口太小，请先放大牌局窗口'",
+      "'正在读取「'",
+      "'」。本局复盘编号 '",
+      "'；识别到的实际出牌会保存在本机。'",
+      "('target', 'daemon')",
+      "'无法开始'",
+      "'游戏窗口已关闭或最小化；恢复窗口后点“开始读取”'",
+      "('bbox', 'all_screens')",
+      "'RGB'",
+      "0.25",
+      "('confidence',)",
+      "'detections'",
+      "'self_draw'",
+      "('state', 'edge', 'hand')",
+      "frozenset({1, 2, 4, 5, 7, 8, 10, 11, 13, 14})",
+      "'searching'",
+      "('state', 'edge', 'count', 'total', 'edges')",
+      "'tiles'",
+      "('tile', 'hand_count')",
+      "'pending_kong'",
+      "('state', 'edge', 'hand', 'tile', 'meld_count', 'melds')",
+      "'hand_count'",
+      "(3, 4)",
+      "(13, 14)",
+      "'自动识别杠 '",
+      "'摸牌前 '",
+      "13",
+      "' 张、摸牌后 '",
+      "' 张'",
+      "'mismatch'",
+      "('state', 'edge', 'hand_count', 'meld_count', 'expected', 'melds')",
+      "('visible', 'open_melds')",
+      "'draw'",
+      "('state', 'edge', 'hand', 'meld_count', 'unknown_meld_count', 'melds', 'shanten', 'ukeire', 'tiles')",
+      "('visible', 'opponent_discards', 'open_melds')",
+      "('default',)",
+      "'ukeire'",
+      "'close_wait'",
+      "'discard'",
+      "'tile_priority'",
+      "'point_off_range'",
+      "'shanten'",
+      "'胡牌进张优先'",
+      "'点炮风险取舍'",
+      "'priority_reason'",
+      "'ready'",
+      "('state', 'edge', 'hand', 'meld_count', 'unknown_meld_count', 'melds', 'options', 'public_tile_count', 'river_tile_count')",
+      "'wall_remaining'",
+      "'wall_confidence'",
+      "'recognized_tile_candidates'",
+      "'牌墙 '",
+      "'牌墙读数未识别'",
+      "'」 · '",
+      "' · 模型识别 '",
+      "' 张候选牌'",
+      "'error'",
+      "('state', 'message')",
+      "'检查窗口选择和显示状态'",
+      "1.0",
+      "'记录本局结果 · 本地复盘'",
+      "'390x250'",
+      "('Microsoft YaHei UI', 14, 'bold')",
+      "(16, 7)",
+      "'累计本机复盘记录：'",
+      "' 条。记录只保存在这台电脑。'",
+      "(0, 10)",
+      "'未点炮和牌'",
+      "('自摸和牌', '点炮和牌', '未点炮和牌', '流局', '其他')",
+      "20",
+      "'0'",
+      "'本局净得分（不知道可填 0）'",
+      "(10, 2)",
+      "16",
+      "'保存结果'",
+      "'分数格式不正确'",
+      "'请填写整数分数。'",
+      "'保存失败'",
+      "'本局结果已写入本机复盘。累计 '",
+      "' 条；数据可用于后续策略评估。'",
+      "'-topmost'",
+      "'#eee9ff'",
+      "'#cbbcff'",
+      "'#f5f2ff'",
+      "'#7657ce'",
+      "68",
+      "('bg', 'height')",
+      "('fill',)",
+      "(12, 8)",
+      "'y'",
+      "('side', 'fill', 'pady')",
+      "'雀灵 · 出牌建议'",
+      "'white'",
+      "('anchor',)",
+      "'只读牌局  ·  不会操作游戏'",
+      "'#e8ddff'",
+      "(2, 0)",
+      "('anchor', 'pady')",
+      "'收起  ×'",
+      "'#8b70dc'",
+      "('Microsoft YaHei UI', 9, 'bold')",
+      "'hand2'",
+      "('text', 'bg', 'fg', 'font', 'padx', 'pady', 'cursor')",
+      "0.98",
+      "0.5",
+      "'e'",
+      "('relx', 'rely', 'anchor')",
+      "'<Button-1>'",
+      "'state'",
+      "'idle'",
+      "('width', 'height', 'bg', 'highlightthickness')",
+      "44",
+      "'#fff1cc'",
+      "'#ffd37a'",
+      "('fill', 'outline', 'width')",
+      "15",
+      "24",
+      "'#563c72'",
+      "('fill', 'outline')",
+      "32",
+      "'#ff9cb4'",
+      "39",
+      "36",
+      "205",
+      "130",
+      "'arc'",
+      "'#a64e72'",
+      "('start', 'extent', 'style', 'outline', 'width')",
+      "'#c7f0cd'",
+      "'#a4dcae'",
+      "41",
+      "'#ffc1d2'",
+      "'#ffadc4'",
+      "'✦'",
+      "'#d89b42'",
+      "('Microsoft YaHei UI', 8, 'bold')",
+      "('text', 'fill', 'font')",
+      "(0, 8)",
+      "('fill', 'pady')",
+      "'万筒条'",
+      "'?'",
+      "'#bc4658'",
+      "'#4a71bd'",
+      "'#328c66'",
+      "('万', '筒', '条')",
+      "'#634b82'",
+      "'large'",
+      "(64, 76, 24, 13)",
+      "'small'",
+      "(39, 45, 13, 9)",
+      "'#fffdf7'",
+      "'#ead8ad'",
+      "('width', 'height', 'bg', 'highlightthickness', 'highlightbackground')",
+      "'Microsoft YaHei UI'",
+      "'bold'",
+      "(3, 0)",
+      "('expand', 'pady')",
+      "(0, 3)",
+      "('pady',)",
+      "0.0",
+      "'#eaf8ef'",
+      "'#fff8e8'",
+      "'#c5e8d0'",
+      "'#f1dfb7'",
+      "11",
+      "('bg', 'border', 'padx', 'pady')",
+      "'牌墙余数  '",
+      "'牌墙余数  暂未识别'",
+      "'#26704f'",
+      "'#86652e'",
+      "'图像匹配度 '",
+      "'.0%'",
+      "'#55816b'",
+      "'模型本帧检测到 '",
+      "' 张牌面候选（含公牌和手牌，供识别排查）'",
+      "'#718078'",
+      "('Microsoft YaHei UI', 8)",
+      "420",
+      "'#fff5d9'",
+      "'#f0d38f'",
+      "'检测到“自摸”操作'",
+      "'#76521c'",
+      "'这时不该再建议打牌。请先在牌桌确认是否和牌；助手已暂停弃牌建议。'",
+      "'#765c35'",
+      "410",
+      "(6, 0)",
+      "'检测到 '",
+      "' ×4 · 可能正在选择杠牌'",
+      "'先在牌桌上完成“杠”或选择“过”。助手暂不推荐打出这四张牌；牌局更新后会继续分析。'",
+      "'#fffdf8'",
+      "'#f0dcae'",
+      "('bg', 'border', 'pady')",
+      "'还在找你的手牌'",
+      "'#654a83'",
+      "'整桌识别到 '",
+      "'total'",
+      "' 张牌面；'",
+      "'edge'",
+      "'边缘有 '",
+      "'count'",
+      "' 张候选牌，正在筛选手牌行。'",
+      "'#5f6173'",
+      "(5, 7)",
+      "'edges'",
+      "'边缘牌数\\u3000上 '",
+      "'上'",
+      "'\\u3000下 '",
+      "'\\u3000左 '",
+      "'左'",
+      "'\\u3000右 '",
+      "'右'",
+      "'#7c728c'",
+      "'边缘候选数不等于你的手牌张数；稳定识别到 13 或 14 张后才显示对应建议。'",
+      "'#777087'",
+      "430",
+      "'#fff4f3'",
+      "'#f3c3c1'",
+      "'读取遇到问题'",
+      "'#aa4652'",
+      "'message'",
+      "'请检查游戏窗口'",
+      "'#694e5b'",
+      "(5, 0)",
+      "'牌数和副露登记对不上，暂不推荐出牌'",
+      "'识别到手牌 '",
+      "' 张；已登记副露 '",
+      "'meld_count'",
+      "' 组。\\n正常应为：'",
+      "'expected'",
+      "'。\\n如果刚完成杠，请确认手牌行已稳定；仍不符时，在主窗口登记杠牌。'",
+      "'#ffffff'",
+      "('bg', 'pady')",
+      "'等牌桌出现后，建议会显示在这里。'",
+      "'#5d5970'",
+      "('Microsoft YaHei UI', 11)",
+      "'hand'",
+      "'#ded7ef'",
+      "('bg', 'border')",
+      "(0, 7)",
+      "'你的手牌  '",
+      "'#423857'",
+      "'副露 '",
+      "'unknown_meld_count'",
+      "'（按手牌数推算）'",
+      "' · '",
+      "'侧'",
+      "'#8e829d'",
+      "'melds'",
+      "'已登记：'",
+      "'#675b83'",
+      "('text', 'bg', 'fg', 'font', 'padx', 'pady')",
+      "(0, 6)",
+      "('row', 'column', 'padx', 'pady')",
+      "'options'",
+      "'#edfbf4'",
+      "'#b9e6cf'",
+      "'✦  首选建议'",
+      "'#327f62'",
+      "'综合考虑'",
+      "'#d8f4e5'",
+      "(7, 0)",
+      "'现在打'",
+      "'#314b41'",
+      "(0, 12)",
+      "'#277354'",
+      "('Microsoft YaHei UI', 23, 'bold')",
+      "'#dcece2'",
+      "(0, 5)",
+      "('side', 'fill', 'expand', 'padx')",
+      "'距离听牌'",
+      "'#777183'",
+      "' 向听'",
+      "'#514760'",
+      "('Microsoft YaHei UI', 12, 'bold')",
+      "'理论进张'",
+      "'#337459'",
+      "'#f0d9ca'",
+      "'点炮概率粗估'",
+      "'#8f6252'",
+      "'–'",
+      "'%'",
+      "'#9b5142'",
+      "'#e3dcf0'",
+      "'备选 '",
+      "'#f2eeff'",
+      "'#71629b'",
+      "'也可打 '",
+      "'#40384d'",
+      "' 向听 · 进张 '",
+      "' 张 · 点炮粗估 '",
+      "'#787183'",
+      "300",
+      "'#f1dfb4'",
+      "'先比向听和可胡牌数；差不超过 2 张再看点炮风险。接近时参考“孤风→孤箭→缺门孤张→幺九→二八，三七尽量留”。点炮区间未经牌谱校准，仅供参考（识别牌河 '",
+      "'river_tile_count'",
+      "' 张）。'",
+      "'按手牌张数推算有 '",
+      "' 组未登记副露；杠牌种类未确认，进张数量仅供参考。'",
+      "'#78643c'",
+      "'#f0f5ff'",
+      "'#cddcff'",
+      "'现在是摸牌前的 '",
+      "' 张手牌'",
+      "'#5a65a4'",
+      "'先等摸一张，再决定打哪张'",
+      "('Microsoft YaHei UI', 15, 'bold')",
+      "(5, 2)",
+      "'当前距离听牌：'",
+      "'#605b72'",
+      "'理论有效摸牌 '",
+      "' 张，可留意：'",
+      "'#4a6a9d'",
+      "380",
+      "'已按 '",
+      "' 组副露计算。摸牌后应有 '",
+      "' 张手牌，再显示弃牌建议。'",
+      "' 副露组数由手牌张数推算，牌型未确认。'",
+      "(60, 80, 900, 800)",
+      "580",
+      "740",
+      "1050",
+      "0.94",
+      "45",
+      "'+'",
+      "'<ButtonPress-1>'",
+      "'<B1-Motion>'",
+      "'_drag'",
+      "'withdrawn'",
+      "'已停止读取'"
+    ]
+  }
+}

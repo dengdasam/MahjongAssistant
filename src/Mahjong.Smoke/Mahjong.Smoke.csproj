@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>Mahjong.Smoke</AssemblyName>
+    <RootNamespace>Mahjong.Smoke</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Mahjong.Vision/Mahjong.Vision.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../Mahjong.Desktop/assets/weights.onnx" Link="assets/weights.onnx"
+          CopyToOutputDirectory="PreserveNewest" Condition="Exists('../Mahjong.Desktop/assets/weights.onnx')" />
+    <None Include="../Mahjong.Desktop/assets/class_names.txt" Link="assets/class_names.txt"
+          CopyToOutputDirectory="PreserveNewest" Condition="Exists('../Mahjong.Desktop/assets/class_names.txt')" />
+  </ItemGroup>
+</Project>

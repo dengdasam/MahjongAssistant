@@ -1,0 +1,26 @@
+<Application x:Class="Mahjong.Desktop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="InkBrush" Color="#22272B" />
+        <SolidColorBrush x:Key="MutedBrush" Color="#5F5E5A" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#3B5A6A" />
+        <SolidColorBrush x:Key="LineBrush" Color="#E2E7EB" />
+        <SolidColorBrush x:Key="PageBrush" Color="#F7F9FA" />
+
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Margin" Value="0,6,0,0" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="{StaticResource InkBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource LineBrush}" />
+            <Setter Property="Padding" Value="12,0" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource InkBrush}" />
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI" />
+        </Style>
+    </Application.Resources>
+</Application>
